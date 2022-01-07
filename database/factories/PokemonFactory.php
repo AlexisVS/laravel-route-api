@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Pokemon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class PokemonFactory extends Factory

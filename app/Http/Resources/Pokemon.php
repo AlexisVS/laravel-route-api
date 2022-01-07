@@ -6,6 +6,7 @@ use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class Pokemon extends ResourceCollection
 {
+    protected $guarded = false;
     /**
      * Transform the resource collection into an array.
      *

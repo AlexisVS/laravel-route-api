@@ -6,6 +6,7 @@ use App\Http\Resources\Pokemon as ResourcesPokemon;
 use App\Models\Pokemon;
 use Illuminate\Http\Client\Response;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PokemonController extends Controller
 {
@@ -16,8 +17,7 @@ class PokemonController extends Controller
      */
     public function index()
     {
-        $pokemons = Pokemon::all();
-        return new ResourcesPokemon($pokemons);
+        return new ResourcesPokemon(Pokemon::all());
     }
 
     /**
@@ -28,7 +28,21 @@ class PokemonController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string',
+            'image' => 'required|file|mimes:png,jpg',
+        ]);
+
+        Storage::disk('public')->put('pokemon', $request->file());
+
+        $store = new Pokemon([
+            'name' => $request->input('name'),
+            'image' => $request->file('image')->hashName(),
+        ]);
+
+        $store->save();
+
+        return redirect('/pokemon');
     }
 
     /**
@@ -39,7 +53,7 @@ class PokemonController extends Controller
      */
     public function show(Pokemon $pokemon)
     {
-        return new ResourcesPokemon( $pokemon);
+        return new ResourcesPokemon($pokemon);
     }
 
     /**
@@ -51,7 +65,17 @@ class PokemonController extends Controller
      */
     public function update(Request $request, Pokemon $pokemon)
     {
-        //
+        $request->validate([
+            'name' => 'required|string',
+            'image' => 'required|file|mimes:png,jpg',
+        ]);
+
+        Storage::disk('public')->delete('pokemon/' . $pokemon->image);
+        Storage::disk('public')->put('pokemon', $request->file());
+
+        $pokemon->name = $request->input('name');
+        $pokemon->image = $request->file('image')->hashName();
+        return redirect('/pokemon');
     }
 
     /**
@@ -62,6 +86,8 @@ class PokemonController extends Controller
      */
     public function destroy(Pokemon $pokemon)
     {
-        //
+        Storage::disk('public')->delete('pokemon/' . $pokemon->image);
+        $pokemon->delete();
+        return redirect('/pokemon');
     }
 }

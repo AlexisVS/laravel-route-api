@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PokemonController;
 use App\Http\Resources\Pokemon as ResourcesPokemon;
 use App\Http\Resources\User;
 use App\Models\Pokemon;
@@ -21,4 +22,6 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::resource('/pokemone', Pokemon::class)->only('index');
+Route::group(['prefix' => 'v1'], function () {
+    Route::apiResource('/pokemon', PokemonController::class);
+});
