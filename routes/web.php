@@ -5,6 +5,7 @@ use App\Http\Resources\Pokemon;
 use App\Http\Resources\User;
 use App\Models\Pokemon as ModelsPokemon;
 use App\Models\User as ModelsUser;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 
 /*
