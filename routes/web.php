@@ -3,10 +3,12 @@
 use App\Http\Controllers\PokemonController;
 use App\Http\Resources\Pokemon;
 use App\Http\Resources\User;
+use App\Imports\PokemonImport;
 use App\Models\Pokemon as ModelsPokemon;
 use App\Models\User as ModelsUser;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
+use Maatwebsite\Excel\Facades\Excel;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +28,11 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+
+Route::post('/import', function () {
+    Excel::import(new PokemonImport, request()->file('file'));
+    return redirect()->back()->with('success','Data Imported Successfully');
+});
 // Route::apiResource('pokemon', Pokemon::class);
 // Route::get('/user/{id}', function ($id) {
 //     return new User(ModelsUser::findOrFail($id));

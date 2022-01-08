@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePokemonTable extends Migration
+class AddForeignKeysToMovesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,8 @@ class CreatePokemonTable extends Migration
      */
     public function up()
     {
-        Schema::create('pokemon', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('image');
-            $table->timestamps();
+        Schema::table('moves', function (Blueprint $table) {
+            $table->foreign(['type_id'], 'moves_ibfk_2')->references(['type_id'])->on('types');
         });
     }
 
@@ -28,6 +25,8 @@ class CreatePokemonTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pokemon');
+        Schema::table('moves', function (Blueprint $table) {
+            $table->dropForeign('moves_ibfk_2');
+        });
     }
 }
