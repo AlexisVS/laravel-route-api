@@ -14,13 +14,14 @@ class CreateBaseStatsTable extends Migration
     public function up()
     {
         Schema::create('base_stats', function (Blueprint $table) {
-            $table->integer('pok_id')->primary();
-            $table->integer('b_hp')->nullable();
-            $table->integer('b_atk')->nullable();
-            $table->integer('b_def')->nullable();
-            $table->integer('b_sp_atk')->nullable();
-            $table->integer('b_sp_def')->nullable();
-            $table->integer('b_speed')->nullable();
+            $table->id();
+            $table->integer('bs_hp');
+            $table->integer('bs_atk');
+            $table->integer('bs_def');
+            $table->integer('bs_sp_atk');
+            $table->integer('bs_sp_def');
+            $table->integer('bs_speed');
+            $table->timestamps();
         });
     }
 

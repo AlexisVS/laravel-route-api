@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateVersionGroupsTable extends Migration
+class CreatePokemonImagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateVersionGroupsTable extends Migration
      */
     public function up()
     {
-        Schema::create('version_groups', function (Blueprint $table) {
-            $table->integer('version_id', true);
-            $table->string('version_name', 79)->unique('identifier');
-            $table->integer('order')->nullable();
+        Schema::create('pokemon_images', function (Blueprint $table) {
+            $table->id();
+            $table->string('image');
+            $table->timestamps();
         });
     }
 
@@ -27,6 +27,6 @@ class CreateVersionGroupsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('version_groups');
+        Schema::dropIfExists('pokemon_images');
     }
 }

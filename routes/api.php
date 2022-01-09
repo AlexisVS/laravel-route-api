@@ -18,10 +18,15 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::group(['prefix' => 'v1'], function () {
-    Route::apiResource('/pokemon', PokemonController::class);
+// Route::group(['prefix' => 'v1'], function () {
+//     Route::apiResource('/pokemon', PokemonController::class);
+// });
+
+Route::prefix('v1')->group(function () {
+    Route::apiResource('/pokemons', PokemonController::class);
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+

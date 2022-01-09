@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddForeignKeysToMovesTable extends Migration
+class CreateHabitatsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,11 @@ class AddForeignKeysToMovesTable extends Migration
      */
     public function up()
     {
-        Schema::table('moves', function (Blueprint $table) {
-            $table->foreign(['type_id'], 'moves_ibfk_2')->references(['type_id'])->on('types');
+        Schema::create('habitats', function (Blueprint $table) {
+            $table->id();
+            $table->string('habitat_name');
+            $table->text('habitat_description');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +28,6 @@ class AddForeignKeysToMovesTable extends Migration
      */
     public function down()
     {
-        Schema::table('moves', function (Blueprint $table) {
-            $table->dropForeign('moves_ibfk_2');
-        });
+        Schema::dropIfExists('habitats');
     }
 }

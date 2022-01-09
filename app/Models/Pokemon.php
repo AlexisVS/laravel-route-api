@@ -9,5 +9,18 @@ class Pokemon extends Model
 {
     use HasFactory;
 
-    protected $guarded = false;
+    public function types () {
+        return $this->belongsToMany(Type::class, 'pokemon_type');
+    }
+
+    public function base_stats () {
+        return $this->belongsTo(BaseStat::class, 'base_stats_id');
+    }
+    public function habitats () {
+        return $this->belongsTo(Habitat::class, 'habitat_id');
+    }
+
+    public function images () {
+        return $this->belongsTo(Pokemon_image::class, 'pokemon_image_id');
+    }
 }

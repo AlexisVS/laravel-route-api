@@ -29,10 +29,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::post('/import', function () {
-    Excel::import(new PokemonImport, request()->file('file'));
-    return redirect()->back()->with('success','Data Imported Successfully');
-});
+
 // Route::apiResource('pokemon', Pokemon::class);
 // Route::get('/user/{id}', function ($id) {
 //     return new User(ModelsUser::findOrFail($id));

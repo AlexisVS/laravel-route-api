@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePokemonEvolutionTable extends Migration
+class CreatePokemonTypeTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreatePokemonEvolutionTable extends Migration
      */
     public function up()
     {
-        Schema::create('pokemon_evolution', function (Blueprint $table) {
-            $table->integer('evol_id', true);
-            $table->integer('evolved_species_id')->index('evolved_species_id');
-            $table->integer('evol_minimum_level')->nullable();
+        Schema::create('pokemon_type', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('pokemon_id')->constrained('pokemon');
+            $table->foreignId('type_id')->constrained('types');
+            $table->timestamps();
         });
     }
 
@@ -27,6 +28,6 @@ class CreatePokemonEvolutionTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pokemon_evolution');
+        Schema::dropIfExists('pokemon_type');
     }
 }

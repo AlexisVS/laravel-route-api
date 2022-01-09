@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\PokemonResource;
-use App\Models\Pokemon;
+use App\Models\Pokemon_type;
 use Illuminate\Http\Request;
 
-class PokemonController extends Controller
+class PokemonTypeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +14,7 @@ class PokemonController extends Controller
      */
     public function index()
     {
-        return PokemonResource::collection(Pokemon::all());
+        //
     }
 
     /**
@@ -32,22 +31,22 @@ class PokemonController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Pokemon  $pokemon
+     * @param  \App\Models\Pokemon_type  $pokemon_type
      * @return \Illuminate\Http\Response
      */
-    public function show(Pokemon $pokemon)
+    public function show(Pokemon_type $pokemon_type)
     {
-        return new PokemonResource($pokemon);
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Pokemon  $pokemon
+     * @param  \App\Models\Pokemon_type  $pokemon_type
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pokemon $pokemon)
+    public function update(Request $request, Pokemon_type $pokemon_type)
     {
         //
     }
@@ -55,10 +54,10 @@ class PokemonController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Pokemon  $pokemon
+     * @param  \App\Models\Pokemon_type  $pokemon_type
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Pokemon $pokemon)
+    public function destroy(Pokemon_type $pokemon_type)
     {
         //
     }

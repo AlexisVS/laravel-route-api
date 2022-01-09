@@ -14,11 +14,15 @@ class CreatePokemonTable extends Migration
     public function up()
     {
         Schema::create('pokemon', function (Blueprint $table) {
-            $table->integer('pok_id', true);
-            $table->string('pok_name', 79);
-            $table->integer('pok_height')->nullable();
-            $table->integer('pok_weight')->nullable();
-            $table->integer('pok_base_experience')->nullable();
+            $table->id();
+            $table->string('name');
+            $table->integer('height');
+            $table->integer('weight');
+            $table->integer('base_experience');
+            $table->foreignId('base_stats_id')->constrained()->nullable();
+            $table->foreignId('habitat_id')->nullable()->constrained();
+            $table->foreignId('pokemon_image_id')->nullable()->constrained();
+            $table->timestamps();
         });
     }
 

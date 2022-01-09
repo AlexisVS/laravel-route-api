@@ -5620,9 +5620,9 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
       uint32Tag = '[object Uint32Array]';
 
   /** Used to match empty string literals in compiled template source. */
-  var reEmptyStringLeading = /\b__p \+= '';/g,
+  var reEmptyStringLeading = /\_p \+= '';/g,
       reEmptyStringMiddle = /\b(__p \+=) '' \+/g,
-      reEmptyStringTrailing = /(__e\(.*?\)|\b__t\)) \+\n'';/g;
+      reEmptyStringTrailing = /(__e\(.*?\)|\_t\)) \+\n'';/g;
 
   /** Used to match HTML entities and HTML characters. */
   var reEscapedHtml = /&(?:amp|lt|gt|quot|#39);/g,

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePokemonMoveMethodsTable extends Migration
+class CreateTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class CreatePokemonMoveMethodsTable extends Migration
      */
     public function up()
     {
-        Schema::create('pokemon_move_methods', function (Blueprint $table) {
-            $table->integer('method_id')->primary();
-            $table->string('method_name', 79);
+        Schema::create('types', function (Blueprint $table) {
+            $table->id();
+            $table->string('type_name');
+            $table->timestamps();
         });
     }
 
@@ -26,6 +27,6 @@ class CreatePokemonMoveMethodsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pokemon_move_methods');
+        Schema::dropIfExists('types');
     }
 }
